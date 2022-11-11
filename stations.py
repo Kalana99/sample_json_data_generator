@@ -1,5 +1,6 @@
 import json
 import random
+import string
 
 
 def get_reg_nos(count):
@@ -77,9 +78,20 @@ def get_emails(count):
     return emails
 
 
+def get_passwords(count):
+
+    passwords = []
+    while len(passwords) < count:
+
+        password = ''.join(random.choice(string.ascii_uppercase) for i in range(1)) + ''.join(random.choice(string.ascii_lowercase) for i in range(3)) + '@' + ''.join(random.choice(string.digits) for i in range(4))
+        passwords.append(password)
+
+    return passwords
+
+
 def create_stations():
 
-    global count, reg_nos, names, nos, locations, companies, emails
+    global count, reg_nos, names, nos, locations, companies, emails, passwords
 
     stations = []
 
@@ -93,6 +105,7 @@ def create_stations():
         station["location"] = locations[i]
         station["company"] = random.choice(companies)
         station["email"] = emails[i]
+        station["password"] = passwords[i]
 
         stations.append(station)
 
@@ -114,6 +127,7 @@ nos = get_contact_nos(count)
 locations = get_locations(count)
 companies = ["Ceypetco", "Lanka IOC"]
 emails = get_emails(count)
+passwords = get_passwords(count)
 
 stations = create_stations()
 
