@@ -92,6 +92,7 @@ def create_orgs():
         org["address"] = addresses[i]
         org["email"] = emails[i]
         org["priority"] = random.randint(1, 5)
+        org["isVerified"] = False
 
         orgs.append(org)
 
