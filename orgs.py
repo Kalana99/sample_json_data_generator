@@ -76,12 +76,25 @@ def get_emails(count):
     return emails
 
 
+def get_org_vehicle_regNos():
+
+
+    f = open('org_vehicles.json')
+    data = json.load(f)
+
+    regNos = []
+    for i in range(len(data)):
+        regNos.append(data[i]['registrationNo'])
+
+    return regNos
+
+
 def create_orgs():
 
-    global count, reg_nos, names, nos, addresses, emails
+    global count, reg_nos, names, nos, addresses, emails, vehicle_regNos
 
     orgs = []
-
+    added_vehicles = []
     for i in range(count):
 
         org = {}
@@ -93,6 +106,20 @@ def create_orgs():
         org["email"] = emails[i]
         org["priority"] = random.randint(1, 5)
         org["isVerified"] = False
+        org["vehicles"] = []
+
+        vh_count = random.randint(1, 4)
+        while len(org["vehicles"]) < vh_count:
+
+            for vh in vehicle_regNos:
+
+                if vh not in added_vehicles:
+
+                    org["vehicles"].append(vh)
+                    added_vehicles.append(vh)
+
+                    if len(org["vehicles"]) == vh_count:
+                        break
 
         orgs.append(org)
 
@@ -106,13 +133,14 @@ def write_json(data, out_file_name, indentation):
     out_file.close()
 
 
-count = 1000
+count = 250
 
 reg_nos = get_reg_nos(count)
 names = get_names(count)
 nos = get_contact_nos(count)
 addresses = get_addresses(count)
 emails = get_emails(count)
+vehicle_regNos = get_org_vehicle_regNos()
 
 orgs = create_orgs()
 
