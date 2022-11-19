@@ -125,7 +125,7 @@ reg_nos = get_reg_nos(count)
 names = get_names(count)
 nos = get_contact_nos(count)
 locations = get_locations(count)
-companies = ["Ceypetco", "Lanka IOC"]
+companies = ["ceypetco", "ioc"]
 emails = get_emails(count)
 passwords = get_passwords(count)
 
