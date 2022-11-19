@@ -105,7 +105,7 @@ def create_stations():
         station["location"] = locations[i]
         station["company"] = random.choice(companies)
         station["email"] = emails[i]
-        station["password"] = passwords[i]
+        station["password"] = "Abcd@1234"
 
         stations.append(station)
 
