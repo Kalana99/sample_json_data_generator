@@ -41,12 +41,15 @@ def get_reg_nos(count):
 
 def get_eng_nos(count):
 
+    global personal
+
     eng_nos = []
     no_int = 0
 
     while len(eng_nos) < count:
 
-        eng_no = "%02d" % (no_int % 100) + "AAA" + "%05d" % no_int
+        mid_str = "-AAA-" if personal else "-BBB-"
+        eng_no = "%02d" % (no_int % 100) + mid_str + "%05d" % no_int
 
         if eng_no not in eng_nos:
             eng_nos.append(eng_no)
